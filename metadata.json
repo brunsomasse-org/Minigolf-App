@@ -1,0 +1,5 @@
+{
+  "name": "Mini-Golf Tournament Scorer",
+  "description": "A real-time scoring application for an 18-hole mini-golf tournament. It allows adding players with their name and country, tracks scores per hole, automatically applies a maximum score rule, and displays a live leaderboard.",
+  "requestFramePermissions": []
+}
