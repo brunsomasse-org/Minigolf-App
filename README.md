@@ -1,20 +1,60 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# UMB Minigolf Scorecard
 
-# Run and deploy your AI Studio app
+Application mobile pour enregistrer les scores en direct lors des tournois de l'**Union des Minigolfeurs du Bénin (UMB)**.
 
-This contains everything you need to run your app locally.
+## Fonctionnalités
 
-View your app in AI Studio: https://ai.studio/apps/drive/1D-bnRt3L2B4zZGCB2SMw6dQ7xlhpzoec
+- ⛳ **Saisie de score en direct** — 18 trous, scores de 1 à 7 par joueur
+- 👥 **Multi-joueurs** — jusqu'à 8 joueurs par partie
+- 🏆 **Classement en temps réel** — mis à jour après chaque trou
+- 📊 **Tableau détaillé** — vue par trou et par joueur
+- 💾 **Sauvegarde locale** — reprendre une partie après fermeture du navigateur
+- 📱 **PWA mobile** *(à venir)* — hors ligne, installable sur iOS/Android
 
-## Run Locally
+## Stack technique
 
-**Prerequisites:**  Node.js
+- **React 18** + **TypeScript**
+- **Vite** — build rapide
+- **CSS custom** — design system UMB (vert profond, sable, rouge drapeau)
+- **State management** — React `useReducer` + Context (sans dépendances externes)
 
+## Lancer en local
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+```bash
+npm install
+npm run dev
+```
+
+Ouvrir [http://localhost:5173](http://localhost:5173) dans un navigateur mobile ou avec les DevTools en mode mobile.
+
+## Structure
+
+```
+src/
+├── components/
+│   ├── HomeScreen.tsx       # Écran d'accueil
+│   ├── SetupScreen.tsx      # Création d'une partie (nom + joueurs)
+│   ├── ScorecardScreen.tsx  # Saisie des scores trou par trou
+│   ├── ScorePad.tsx         # Pavé de saisie par joueur
+│   ├── LeaderboardScreen.tsx # Classement + tableau détaillé
+│   └── BottomNav.tsx        # Navigation basse
+├── store/
+│   └── tournament.tsx       # État global (Context + useReducer)
+├── types.ts                 # Types TypeScript
+├── App.tsx                  # Routage principal
+└── index.css                # Design system complet
+```
+
+## Règles de score
+
+| Score | Label     |
+|-------|-----------|
+| 1     | Trou en un ! |
+| 2     | Birdie    |
+| 3     | –1        |
+| 4     | Par       |
+| 5     | +1        |
+| 6     | +2        |
+| 7     | +3        |
+
+Le classement est établi par score total croissant (le plus bas gagne).

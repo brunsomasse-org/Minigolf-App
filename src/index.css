@@ -1,0 +1,626 @@
+/* ─── FONTS ─────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&display=swap');
+
+/* ─── TOKENS ─────────────────────────────────────────────────── */
+:root {
+  --green-deep:   #1A3C2E;
+  --green-mid:    #2A5C46;
+  --green-light:  #7EC44F;
+  --green-pale:   #EAF4DC;
+  --sand:         #F5EDD6;
+  --sand-dark:    #E8DBBF;
+  --flag-red:     #E5352B;
+  --white:        #FFFFFF;
+  --text-primary: #1A1A1A;
+  --text-muted:   #6B7280;
+  --radius-sm:    8px;
+  --radius-md:    12px;
+  --radius-lg:    20px;
+  --nav-h:        64px;
+}
+
+/* ─── RESET ──────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; font-family: 'Inter', sans-serif; background: var(--sand); color: var(--text-primary); -webkit-font-smoothing: antialiased; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+input { font-family: inherit; }
+
+/* ─── APP SHELL ──────────────────────────────────────────────── */
+.app-shell {
+  max-width: 430px;
+  min-height: 100dvh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background: var(--sand);
+  position: relative;
+}
+
+.screen-content {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: var(--nav-h);
+}
+
+/* ─── HOME SCREEN ────────────────────────────────────────────── */
+.home-screen {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.home-hero {
+  background: var(--green-deep);
+  padding: 64px 32px 48px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.umb-badge {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px;
+  letter-spacing: 4px;
+  color: var(--green-light);
+  margin-bottom: 16px;
+}
+
+.home-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 72px;
+  line-height: 0.9;
+  color: var(--white);
+  letter-spacing: 1px;
+}
+
+.home-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  margin-top: 16px;
+  letter-spacing: 0.5px;
+}
+
+.home-actions {
+  background: var(--sand);
+  padding: 32px 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.home-note {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 12px;
+}
+
+.home-footer {
+  padding: 0 24px 32px;
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.dot { opacity: 0.4; }
+
+/* ─── BUTTONS ────────────────────────────────────────────────── */
+.btn-primary {
+  width: 100%;
+  background: var(--green-deep);
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 600;
+  padding: 16px 24px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: background 0.15s;
+}
+.btn-primary:hover { background: var(--green-mid); }
+.btn-primary.disabled { opacity: 0.4; cursor: not-allowed; }
+.btn-icon { font-size: 20px; }
+
+.btn-secondary {
+  width: 100%;
+  background: var(--green-pale);
+  color: var(--green-deep);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 14px 24px;
+  border-radius: var(--radius-md);
+  transition: background 0.15s;
+}
+.btn-secondary:hover { background: var(--sand-dark); }
+
+.btn-outline {
+  width: 100%;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--sand-dark);
+  transition: all 0.15s;
+}
+.btn-outline:hover { border-color: var(--green-deep); color: var(--green-deep); }
+
+/* ─── SETUP SCREEN ───────────────────────────────────────────── */
+.setup-screen {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+.setup-header {
+  background: var(--green-deep);
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.back-btn {
+  color: rgba(255,255,255,0.7);
+  font-size: 14px;
+}
+.back-btn:hover { color: var(--white); }
+
+.setup-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 26px;
+  color: var(--white);
+  letter-spacing: 1px;
+}
+
+.setup-body {
+  flex: 1;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.field-group { display: flex; flex-direction: column; gap: 10px; }
+.field-label { font-size: 12px; font-weight: 600; letter-spacing: 1px; color: var(--text-muted); text-transform: uppercase; }
+.field-input {
+  background: var(--white);
+  border: 1.5px solid var(--sand-dark);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-size: 15px;
+  color: var(--text-primary);
+  width: 100%;
+  transition: border-color 0.15s;
+}
+.field-input:focus { outline: none; border-color: var(--green-light); }
+
+.players-list { display: flex; flex-direction: column; gap: 10px; }
+.player-row { display: flex; align-items: center; gap: 10px; }
+.player-color-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+.player-input { flex: 1; }
+.remove-btn { font-size: 14px; color: var(--text-muted); padding: 4px 8px; }
+.remove-btn:hover { color: var(--flag-red); }
+
+.add-player-btn {
+  font-size: 14px;
+  color: var(--green-mid);
+  font-weight: 500;
+  padding: 10px 0;
+  text-align: left;
+}
+
+.setup-footer {
+  padding: 16px 24px 32px;
+  border-top: 1px solid var(--sand-dark);
+  background: var(--sand);
+}
+
+/* ─── SCORECARD SCREEN ───────────────────────────────────────── */
+.scorecard-screen {
+  display: flex;
+  flex-direction: column;
+}
+
+.hole-header {
+  background: var(--green-deep);
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hole-nav-btn {
+  color: rgba(255,255,255,0.6);
+  font-size: 32px;
+  line-height: 1;
+  padding: 0 8px;
+  transition: color 0.15s;
+}
+.hole-nav-btn:hover:not(:disabled) { color: var(--white); }
+.hole-nav-btn:disabled { opacity: 0.2; cursor: default; }
+
+.hole-info {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.hole-label {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+}
+
+.hole-number {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 56px;
+  color: var(--white);
+  line-height: 1;
+  margin: 0 4px;
+}
+
+.hole-of {
+  font-size: 16px;
+  color: rgba(255,255,255,0.4);
+}
+
+/* Progress bar */
+.progress-bar-track {
+  height: 4px;
+  background: rgba(0,0,0,0.08);
+}
+.progress-bar-fill {
+  height: 100%;
+  background: var(--green-light);
+  transition: width 0.4s ease;
+}
+
+/* Player tabs */
+.player-tabs {
+  display: flex;
+  background: var(--white);
+  border-bottom: 1px solid var(--sand-dark);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.player-tabs::-webkit-scrollbar { display: none; }
+
+.player-tab {
+  flex: 1;
+  min-width: 64px;
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  border-bottom: 3px solid transparent;
+  transition: border-color 0.15s;
+  position: relative;
+}
+.player-tab.active { background: var(--sand); }
+
+.tab-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tab-score {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  color: var(--white);
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Score area */
+.score-area {
+  padding: 20px 16px;
+  background: var(--sand);
+}
+
+/* Score pad */
+.score-pad {}
+
+.score-pad-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.player-chip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 2px solid;
+  border-radius: 100px;
+  padding: 6px 14px 6px 6px;
+  background: var(--white);
+}
+.player-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.player-chip-name { font-size: 14px; font-weight: 500; }
+
+.current-score-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: var(--white);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Score grid — 7 buttons */
+.score-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.score-btn {
+  background: var(--white);
+  border: 2px solid var(--sand-dark);
+  border-radius: var(--radius-sm);
+  padding: 10px 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  transition: all 0.1s;
+  touch-action: manipulation;
+}
+.score-btn:active { transform: scale(0.93); }
+.score-btn.selected {
+  color: var(--white);
+  border-color: transparent;
+}
+.score-btn.flash {
+  transform: scale(0.88);
+}
+
+.score-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  line-height: 1;
+}
+.score-label {
+  font-size: 8px;
+  color: inherit;
+  opacity: 0.6;
+  text-align: center;
+  white-space: nowrap;
+}
+.score-btn.selected .score-label { opacity: 0.9; }
+
+/* Hole summary */
+.hole-summary {
+  display: flex;
+  background: var(--white);
+  border-top: 1px solid var(--sand-dark);
+  padding: 12px 16px;
+  gap: 8px;
+  overflow-x: auto;
+}
+
+.summary-cell {
+  flex: 1;
+  min-width: 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.summary-name { font-size: 11px; color: var(--text-muted); }
+.summary-score {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--sand-dark);
+  color: var(--text-muted);
+}
+
+.finish-btn {
+  margin: 16px;
+  background: var(--flag-red);
+}
+.finish-btn:hover { background: #c42a22; }
+
+/* ─── LEADERBOARD ────────────────────────────────────────────── */
+.leaderboard-screen { padding-bottom: 32px; }
+
+.lb-header {
+  background: var(--green-deep);
+  padding: 32px 24px 24px;
+}
+.lb-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 42px;
+  color: var(--white);
+  letter-spacing: 1px;
+}
+.lb-subtitle {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  margin-top: 4px;
+}
+
+.lb-list {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lb-row {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--sand-dark);
+}
+.lb-row.lb-first {
+  border-color: var(--green-light);
+  background: var(--green-pale);
+}
+
+.lb-rank { width: 28px; text-align: center; }
+.medal { font-size: 20px; }
+.rank-num { font-size: 15px; font-weight: 600; color: var(--text-muted); }
+
+.lb-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.lb-info { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+.lb-name { font-size: 15px; font-weight: 500; }
+.lb-holes { font-size: 12px; color: var(--text-muted); }
+
+.lb-total {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px;
+  line-height: 1;
+}
+
+/* Hole breakdown table */
+.hole-grid-section {
+  padding: 0 16px 16px;
+}
+.hg-title {
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.hole-grid-scroll { overflow-x: auto; border-radius: var(--radius-sm); border: 1px solid var(--sand-dark); }
+.hole-table { border-collapse: collapse; width: max-content; min-width: 100%; font-size: 12px; }
+.hole-table th, .hole-table td { padding: 0; }
+.hole-table th {
+  background: var(--green-deep);
+  color: rgba(255,255,255,0.7);
+  font-weight: 500;
+  font-size: 11px;
+  text-align: center;
+}
+.ht-player-col { width: 36px; padding: 8px 6px; }
+.ht-hole-col { width: 28px; padding: 8px 4px; }
+.ht-total-col { width: 36px; padding: 8px 6px; font-weight: 700; color: var(--white); }
+
+.hole-table tbody tr:nth-child(even) { background: var(--sand); }
+.hole-table tbody tr:nth-child(odd) { background: var(--white); }
+
+.ht-player-cell { padding: 6px; text-align: center; }
+.ht-avatar {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  color: var(--white);
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+.ht-score-cell { text-align: center; padding: 4px 2px; }
+.ht-score {
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+.ht-empty { color: var(--text-muted); font-size: 10px; text-align: center; }
+.ht-total-cell { text-align: center; padding: 6px; font-family: 'Bebas Neue', sans-serif; font-size: 20px; font-weight: 700; }
+
+.lb-actions {
+  padding: 8px 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ─── BOTTOM NAV ─────────────────────────────────────────────── */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 430px;
+  height: var(--nav-h);
+  background: var(--white);
+  border-top: 1px solid var(--sand-dark);
+  display: flex;
+  z-index: 100;
+}
+
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 500;
+  transition: color 0.15s;
+}
+.nav-item.active { color: var(--green-deep); }
+.nav-icon { font-size: 22px; }
+.nav-label { font-size: 11px; }
