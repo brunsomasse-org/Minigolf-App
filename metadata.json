@@ -1,5 +1,22 @@
 {
-  "name": "Mini-Golf Tournament Scorer",
-  "description": "A real-time scoring application for an 18-hole mini-golf tournament. It allows adding players with their name and country, tracks scores per hole, automatically applies a maximum score rule, and displays a live leaderboard.",
-  "requestFramePermissions": []
+  "name": "UMB Minigolf Scorecard",
+  "shortName": "UMB Golf",
+  "description": "Application de score en direct pour les tournois de l'Union des Minigolfeurs du Bénin",
+  "version": "0.1.0",
+  "organization": "Union des Minigolfeurs du Bénin (UMB)",
+  "locale": "fr-BJ",
+  "sport": "minigolf",
+  "rules": {
+    "holes": 18,
+    "minScore": 1,
+    "maxScore": 7,
+    "maxPlayers": 8,
+    "scoring": "stroke-play",
+    "winner": "lowest-total"
+  },
+  "theme": {
+    "primaryColor": "#1A3C2E",
+    "accentColor": "#7EC44F",
+    "dangerColor": "#E5352B"
+  }
 }
