@@ -58,3 +58,4 @@ src/
 | 7     | +3        |
 
 Le classement est établi par score total croissant (le plus bas gagne).
+test
