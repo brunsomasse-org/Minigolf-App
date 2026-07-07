@@ -1,0 +1,32 @@
+name: Enforce Branch Promotion Path
+
+on:
+  pull_request:
+    branches:
+      - main
+      - uat
+
+jobs:
+  check-source-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate PR source branch
+        run: |
+          BASE="${{ github.event.pull_request.base.ref }}"
+          HEAD="${{ github.event.pull_request.head.ref }}"
+
+          echo "PR: $HEAD -> $BASE"
+
+          if [ "$BASE" = "main" ] && [ "$HEAD" != "uat" ]; then
+            echo "❌ PRs into 'main' must come from 'uat' only."
+            echo "You tried to merge '$HEAD' into 'main'."
+            exit 1
+          fi
+
+          if [ "$BASE" = "uat" ] && [ "$HEAD" != "dev" ]; then
+            echo "❌ PRs into 'uat' must come from 'dev' only."
+            echo "You tried to merge '$HEAD' into 'uat'."
+            exit 1
+          fi
+
+          echo "✅ Promotion path valid."
