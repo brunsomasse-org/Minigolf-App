@@ -3,13 +3,15 @@
 
 /* ─── TOKENS ─────────────────────────────────────────────────── */
 :root {
-  --green-deep:   #1A3C2E;
-  --green-mid:    #2A5C46;
-  --green-light:  #7EC44F;
-  --green-pale:   #EAF4DC;
-  --sand:         #F5EDD6;
-  --sand-dark:    #E8DBBF;
-  --flag-red:     #E5352B;
+  --green-deep:   #006B3C;
+  --green-mid:    #008751;
+  --green-light:  #4CAF7D;
+  --green-pale:   #E5F3EC;
+  --sand:         #FBF7EA;
+  --sand-dark:    #E5DCAF;
+  --flag-red:     #E8112D;
+  --gold:         #FCD116;
+  --gold-dark:    #A67C00;
   --white:        #FFFFFF;
   --text-primary: #1A1A1A;
   --text-muted:   #6B7280;
@@ -461,7 +463,7 @@ input { font-family: inherit; }
   margin: 16px;
   background: var(--flag-red);
 }
-.finish-btn:hover { background: #c42a22; }
+.finish-btn:hover { background: #C00E24; }
 
 /* ─── LEADERBOARD ────────────────────────────────────────────── */
 .leaderboard-screen { padding-bottom: 32px; }
