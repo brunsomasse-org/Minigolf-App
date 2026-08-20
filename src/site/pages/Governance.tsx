@@ -32,7 +32,7 @@ export default function Governance() {
         <span className="eyebrow eyebrow-light">{t('gov.hero.eyebrow')}</span>
         <h1 className="page-title">{t('gov.hero.title')}</h1>
         <p className="page-hero-sub">{t('gov.hero.sub')}</p>
-        
+        <a
           href="/documents/UMB-Statuts-2026.pdf"
           target="_blank"
           rel="noopener noreferrer"
