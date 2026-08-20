@@ -1,0 +1,95 @@
+// DRAFT SCHEMA — not yet wired to any live payment provider.
+// Shaped to stay provider-agnostic (FedaPay vs KkiaPay vs both) so the
+// choice of aggregator doesn't force a schema rewrite later.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum MemberStatus {
+  PENDING
+  ACTIVE
+  EXPIRED
+  SUSPENDED
+}
+
+enum PaymentPurpose {
+  MEMBERSHIP
+  TOURNAMENT_FEE
+  DONATION
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCEEDED
+  FAILED
+  REFUNDED
+}
+
+enum PaymentProvider {
+  FEDAPAY
+  KKIAPAY
+}
+
+model Member {
+  id            String       @id @default(cuid())
+  fullName      String
+  email         String       @unique
+  phone         String?
+  status        MemberStatus @default(PENDING)
+  memberSince   DateTime?
+  expiresAt     DateTime?
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  payments             Payment[]
+  tournamentEntries    TournamentRegistration[]
+}
+
+model Tournament {
+  id          String   @id @default(cuid())
+  name        String
+  date        DateTime
+  entryFee    Int      // stored in smallest currency unit (e.g. FCFA has no subunit, so this is whole francs)
+  currency    String   @default("XOF")
+  createdAt   DateTime @default(now())
+
+  registrations TournamentRegistration[]
+}
+
+model TournamentRegistration {
+  id           String   @id @default(cuid())
+  member       Member     @relation(fields: [memberId], references: [id])
+  memberId     String
+  tournament   Tournament @relation(fields: [tournamentId], references: [id])
+  tournamentId String
+  payment      Payment?   @relation(fields: [paymentId], references: [id])
+  paymentId    String?    @unique
+  createdAt    DateTime   @default(now())
+
+  @@unique([memberId, tournamentId])
+}
+
+// A single record per payment attempt, regardless of purpose or provider.
+// providerTransactionId + provider together let a webhook be matched back
+// to this record and verified idempotently (a provider may retry a webhook).
+model Payment {
+  id                    String          @id @default(cuid())
+  member                Member?         @relation(fields: [memberId], references: [id])
+  memberId              String?
+  purpose               PaymentPurpose
+  amount                Int             // smallest currency unit
+  currency              String          @default("XOF")
+  provider              PaymentProvider
+  providerTransactionId String          @unique
+  status                PaymentStatus   @default(PENDING)
+  createdAt             DateTime        @default(now())
+  updatedAt             DateTime        @updatedAt
+
+  tournamentRegistration TournamentRegistration?
+}

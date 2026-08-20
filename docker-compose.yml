@@ -1,0 +1,26 @@
+# Local development only. Production runs the backend image on Cloud Run
+# or Azure Container Apps against a managed Postgres instance, not this
+# containerized db service — see backend/.env.example.
+services:
+  api:
+    build: ./backend
+    ports:
+      - "8080:8080"
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: umb
+      POSTGRES_PASSWORD: umb_dev_password
+      POSTGRES_DB: umb_backend
+    ports:
+      - "5432:5432"
+    volumes:
+      - umb_db_data:/var/lib/postgresql/data
+
+volumes:
+  umb_db_data:
