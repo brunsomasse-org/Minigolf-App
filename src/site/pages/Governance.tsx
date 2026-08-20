@@ -12,11 +12,11 @@ export default function Governance() {
   ];
 
   const roles = [
-    { title: t('gov.role1.title'), body: t('gov.role1.body') },
-    { title: t('gov.role2.title'), body: t('gov.role2.body') },
-    { title: t('gov.role3.title'), body: t('gov.role3.body') },
-    { title: t('gov.role4.title'), body: t('gov.role4.body') },
-    { title: t('gov.role5.title'), body: t('gov.role5.body') },
+    { title: t('gov.role1.title'), name: 'SOMASSE Arthure', body: t('gov.role1.body') },
+    { title: t('gov.role2.title'), name: 'FOFANA Moutakilou', body: t('gov.role2.body') },
+    { title: t('gov.role3.title'), name: 'AGUEH ETEDJIHOUNKPE Jerry', body: t('gov.role3.body') },
+    { title: t('gov.role4.title'), name: 'SOMASSE Brun', body: t('gov.role4.body') },
+    { title: t('gov.role5.title'), name: 'LAURIANO Bastou', body: t('gov.role5.body') },
   ];
 
   const memberTypes = [
@@ -67,7 +67,7 @@ export default function Governance() {
               </div>
               <div className="role-row-text">
                 <h4>{r.title}</h4>
-                <p className="role-name">{t('placeholder.memberName')}</p>
+                <p className="role-name">{r.name}</p>
                 <p>{r.body}</p>
               </div>
             </div>
