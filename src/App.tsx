@@ -6,7 +6,7 @@ import About from './site/pages/About';
 import Governance from './site/pages/Governance';
 import Tournaments from './site/pages/Tournaments';
 import Contact from './site/pages/Contact';
-import ScorecardApp from './site/ScorecardApp';
+import ScorecardApp from './scorecard/ScorecardApp';
 import './index.css';
 import './site/site.css';
 
